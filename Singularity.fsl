@@ -1,0 +1,31 @@
+Bootstrap: shub
+From: willgpaik/afni_aci:latest
+
+%environment
+  PATH="/usr/local/bin/:$PATH:/usr/lib64/openmpi/bin/"
+	LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib64/openmpi/lib/"
+	MPI_ROOT=/usr/lib64/openmpi/
+	export PATH
+	export LD_LIBRARY_PATH
+	export MPI_ROOT
+	export BOOST_ROOT=/usr/local/
+	source /opt/rh/devtoolset-8/enable
+  
+  export R_LIBS=/usr/R:$R_LIBS
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  export PATH=/usr/local/bin:$PATH
+  export PATH=/usr/abin:$PATH
+  export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
+  export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
+  
+%post
+  # FSLView requirements 
+  yum -y install libpng12-devel libmng-devel
+  yum -y update
+
+  source /opt/rh/devtoolset-8/enable
+
+  cd /tmp
+  wget https://fsl.fmrib.ox.ac.uk/fsldownloads/fslinstaller.py
+  python fslinstaller.py -d /usr/local/fsl
+  rm fslinstaller.py
