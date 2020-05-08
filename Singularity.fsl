@@ -18,6 +18,11 @@ From: willgpaik/afni_aci:latest
   export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
   export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
   
+  FSLDIR=/usr/local/fsl
+  . ${FSLDIR}/etc/fslconf/fsl.sh
+  PATH=${FSLDIR}/bin:${PATH}
+  export FSLDIR PATH
+  
 %post
   # FSLView requirements 
   yum -y install libpng12-devel libmng-devel
@@ -27,5 +32,5 @@ From: willgpaik/afni_aci:latest
 
   cd /tmp
   wget https://fsl.fmrib.ox.ac.uk/fsldownloads/fslinstaller.py
-  python fslinstaller.py -d /usr/local/fsl
+  python3 fslinstaller.py -d /usr/local/fsl
   rm fslinstaller.py
