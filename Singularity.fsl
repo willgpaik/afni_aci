@@ -32,5 +32,5 @@ From: willgpaik/afni_aci:latest
 
   cd /tmp
   wget https://fsl.fmrib.ox.ac.uk/fsldownloads/fslinstaller.py
-  python3 fslinstaller.py -d /usr/local/fsl
+  python fslinstaller.py -d /usr/local/fsl
   rm fslinstaller.py
