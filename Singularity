@@ -32,12 +32,14 @@ From: willgpaik/centos7_aci
 	yum -y install tcsh libXp openmotif gsl xorg-x11-fonts-misc \
 		PyQt4 R-devel netpbm-progs gnome-tweak-tool ed \
 		libpng12 xorg-x11-server-Xvfb firefox \
-    mesa-libGLw-devel
+    		mesa-libGLw-devel
 
 	mkdir -p /usr/abin
 
 	export HOME=/usr
 	export PATH=/usr/abin:$PATH
+	
+	cd $HOME
 
 	curl -O https://afni.nimh.nih.gov/pub/dist/bin/misc/@update.afni.binaries
 	tcsh @update.afni.binaries -package linux_centos_7_64 -do_extras
@@ -61,7 +63,9 @@ From: willgpaik/centos7_aci
 	cd CD
 	tcsh s2.cp.files . ~
 	cd ..
+	# https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/steps_linux_Fed_RH.html#prepare-for-bootcamp
 	rm CD.tgz
+	rm -rf CD
 
 	afni_system_check.py -check_all
 
